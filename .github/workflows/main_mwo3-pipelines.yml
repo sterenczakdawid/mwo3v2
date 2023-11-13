@@ -4,9 +4,6 @@
 name: Build and deploy JAR app to Azure Web App - mwo3-pipelines
 
 on:
-  pull_request:
-    branches:
-      - main
   push:
     branches:
       - main
@@ -41,7 +38,6 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.action != closed
 
     steps:
       - name: Download artifact from build job
