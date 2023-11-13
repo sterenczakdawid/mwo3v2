@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'mwo3-pipelines'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C9915121184B426AB6CC364184775793 }}
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PRODUCTION }}
           package: '*.jar'
