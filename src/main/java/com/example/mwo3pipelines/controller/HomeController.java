@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
     @GetMapping("/")
     public String home() {
-        return "Witaj w aplikacji na azure";
+        return "Witaj w aplikacji na azure (testtt)";
     }
 
     public static int returnNumber(int a) {
