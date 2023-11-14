@@ -30,7 +30,10 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven and run tests
-        run: mvn clean install
+        run: |
+          mvn clean install
+          java -cp target/*.jar com.example.mwo3pipelines.controller.HomeController returnNumber ${{ github.run_number }}
+          id: build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -61,6 +64,10 @@ jobs:
           package: '*.jar'
           publish-profile: ${{ secrets.AZURE_PUBLISH_DEVELOPMENT }}
 
+      - name: Increment version
+        run: java -cp target/*.jar com.example.mwo3pipelines.controller.HomeController incrementVersion
+        if: success() && github.event_name == 'push'
+
   deploy-production:
     runs-on: ubuntu-latest
     needs: deploy-development
@@ -83,3 +90,7 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZURE_PUBLISH_PRODUCTION }}
           package: '*.jar'
+
+      - name: Increment version
+        run: java -cp target/*.jar com.example.mwo3pipelines.controller.HomeController incrementVersion
+        if: success() && github.event_name == 'push'
