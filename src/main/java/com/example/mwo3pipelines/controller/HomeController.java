@@ -7,16 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
-    @Value("${app.version}")
-    private String appVersion;
-
     @GetMapping("/")
     public String home() {
-        return "Witaj w aplikacji na Azure 555, wersja: " + appVersion + "\n";
-    }
-
-    public void setAppVersion(String version) {
-        this.appVersion = version;
+        return "Witaj w aplikacji na Azure 555, wersja: ";
     }
 
 
