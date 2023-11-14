@@ -12,8 +12,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return "Witaj w aplikacji na Azure (test)\n" +
-                "Numer wersji: " + appVersion;
+        return "Witaj w aplikacji na Azure!!!!! (test)\n" +
+                "\nNumer wersji: " + appVersion;
     }
 
     public static int returnNumber(int a) {
