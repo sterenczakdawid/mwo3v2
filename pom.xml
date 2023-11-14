@@ -40,6 +40,23 @@
 					</image>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.7</version>
+				<executions>
+					<execution>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>set</goal>
+						</goals>
+						<configuration>
+							<generateBackupPoms>false</generateBackupPoms>
+							<newVersion>${BUILD_NUMBER}</newVersion>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
 		</plugins>
 	</build>
