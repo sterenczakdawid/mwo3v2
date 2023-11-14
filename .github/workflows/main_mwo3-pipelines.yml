@@ -17,6 +17,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set Build Number
+        run: echo "BUILD_NUMBER=${{ github.run_number }}" >> $GITHUB_ENV
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -27,16 +30,16 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven and run tests
-        run: |
-         mvn clean install
-         mvn versions:set -DnewVersion=${{ github.run_number }}
+#        run: |
+#         mvn clean install
+#         mvn versions:set -DnewVersion=${{ github.run_number }}
+        run: mvn clean install -DbuildNumber=${{ github.run_number }}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*-${{ github.run_number }}.jar'
-#          path: '${{ github.workspace }}/target/*.jar'
+          path: '${{ github.workspace }}/target/*.jar'
 
   deploy-development:
     runs-on: ubuntu-latest

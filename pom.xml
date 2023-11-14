@@ -52,7 +52,7 @@
 						</goals>
 						<configuration>
 							<generateBackupPoms>false</generateBackupPoms>
-							<newVersion>${{ github.run_number }}</newVersion>
+							<newVersion>${buildNumber}</newVersion>
 						</configuration>
 					</execution>
 				</executions>
