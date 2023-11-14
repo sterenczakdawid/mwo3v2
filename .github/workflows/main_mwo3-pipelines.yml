@@ -32,7 +32,9 @@ jobs:
       - name: Debug
         run: | 
          echo "BUILD_NUMBER=${{ github.run_number }}"
-         echo "APP_VERSION=${{ github.run_number }}" >> $GITHUB_ENV
+         echo "app_version=0.0.${{ github.run_number }}" >> $GITHUB_ENV
+#         echo "APP_VERSION=${{ github.run_number }}" >> $GITHUB_ENV
+
 
       - name: Build with Maven and run tests
         run: mvn clean install
