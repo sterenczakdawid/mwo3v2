@@ -18,10 +18,7 @@ jobs:
 
     steps:
       - name: Set Build Number
-        id: set_build_number
-        uses: einaregilsson/build-number@v3
-        with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        run: echo "BUILD_NUMBER=0.0.${{ github.run_number }}" >> $GITHUB_ENV
 #      - name: Debug
 #        run: echo "build.number=0.0.${{ github.run_number }}" >> $GITHUB_ENV
 

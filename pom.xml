@@ -41,18 +41,28 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>versions-maven-plugin</artifactId>
-				<version>2.7</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.2.0</version>
 				<executions>
 					<execution>
+						<id>copy-application-properties</id>
 						<phase>generate-resources</phase>
 						<goals>
-							<goal>set</goal>
+							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<generateBackupPoms>false</generateBackupPoms>
-							<newVersion>${BUILD_NUMBER}</newVersion>
+							<outputDirectory>${project.build.outputDirectory}/config</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/resources</directory>
+									<filtering>true</filtering>
+									<includes>
+										<include>application.properties</include>
+									</includes>
+								</resource>
+							</resources>
+							<overwrite>true</overwrite>
 						</configuration>
 					</execution>
 				</executions>
