@@ -1,24 +1,22 @@
 package com.example.mwo3pipelines.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HomeController {
 
-    private static int version = 0;
+    @Value("${app.version}")
+    private String appVersion;
 
     @GetMapping("/")
     public String home() {
-        return "Witaj w aplikacji na Azure 555, wersja: " + getVersion() + "\n";
+        return "Witaj w aplikacji na Azure 555, wersja: " + appVersion + "\n";
     }
 
-    public static int getVersion() {
-        return version;
-    }
-
-    public static void incrementVersion() {
-        version++;
+    public void setAppVersion(String version) {
+        this.appVersion = version;
     }
 
 

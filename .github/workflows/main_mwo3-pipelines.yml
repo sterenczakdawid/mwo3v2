@@ -41,6 +41,12 @@ jobs:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
 
+      - name: Set app version
+        run: |
+          version="0.0.${{ github.run_number }}"
+          echo "app.version=$version" >> '${{ github.workspace }}/src/main/resources/application.properties'
+        if: success() && github.event_name == 'push'
+
   deploy-development:
     runs-on: ubuntu-latest
     needs: build
