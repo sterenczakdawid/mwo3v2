@@ -30,22 +30,13 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven and run tests
-        run: |
-          mvn clean install
-          java -cp target/*.jar com.example.mwo3pipelines.controller.HomeController returnNumber ${{ github.run_number }}
-          id: build
+        run: mvn clean install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
-
-      - name: Set app version
-        run: |
-          version="0.0.${{ github.run_number }}"
-          echo "app.version=$version" >> '${{ github.workspace }}/src/main/resources/application.properties'
-        if: success() && github.event_name == 'push'
 
   deploy-development:
     runs-on: ubuntu-latest
@@ -70,9 +61,6 @@ jobs:
           package: '*.jar'
           publish-profile: ${{ secrets.AZURE_PUBLISH_DEVELOPMENT }}
 
-      - name: Increment version
-        run: java -cp target/*.jar com.example.mwo3pipelines.controller.HomeController incrementVersion
-        if: success() && github.event_name == 'push'
 
   deploy-production:
     runs-on: ubuntu-latest
@@ -97,6 +85,3 @@ jobs:
           publish-profile: ${{ secrets.AZURE_PUBLISH_PRODUCTION }}
           package: '*.jar'
 
-      - name: Increment version
-        run: java -cp target/*.jar com.example.mwo3pipelines.controller.HomeController incrementVersion
-        if: success() && github.event_name == 'push'
