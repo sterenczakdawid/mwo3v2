@@ -36,7 +36,8 @@ jobs:
 #        run: |
 #         mvn clean install
 #         mvn versions:set -DnewVersion=${{ github.run_number }}
-        run: mvn clean install -DbuildNumber=${{ github.run_number }}
+#        run: mvn clean install -DbuildNumber=${{ github.run_number }}
+        run: mvn clean install -Dapp.version=${{ github.run_number }}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
