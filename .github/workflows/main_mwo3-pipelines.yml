@@ -19,8 +19,6 @@ jobs:
     steps:
       - name: Set Build Number
         run: echo "BUILD_NUMBER=0.0.${{ github.run_number }}" >> $GITHUB_ENV
-#      - name: Debug
-#        run: echo "build.number=0.0.${{ github.run_number }}" >> $GITHUB_ENV
 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -32,7 +30,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven and run tests
-        run: mvn clean install -Dproject.version=0.0.${{ github.run_number }}
+        run: mvn clean install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
