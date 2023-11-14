@@ -32,7 +32,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven and run tests
-        run: mvn clean install -Dapp.version=${{ env.BUILD_NUMBER }}
+        run: mvn clean install -Dproject.version=0.0.${{ github.run_number }}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
