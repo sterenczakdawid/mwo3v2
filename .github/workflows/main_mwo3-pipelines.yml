@@ -27,13 +27,16 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven and run tests
-        run: mvn clean install
+        run: |
+         mvn clean install
+         mvn versions:set -DnewVersion=${{ github.run_number }}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          path: '${{ github.workspace }}/target/*-${{ github.run_number }}.jar'
+#          path: '${{ github.workspace }}/target/*.jar'
 
   deploy-development:
     runs-on: ubuntu-latest
