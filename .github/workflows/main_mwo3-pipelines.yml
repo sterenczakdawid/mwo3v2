@@ -35,7 +35,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven and run tests
-        run: mvn clean install
+        run: mvn clean install -Dapp.version=${{ env.BUILD_NUMBER }}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
