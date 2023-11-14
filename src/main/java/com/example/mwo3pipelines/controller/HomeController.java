@@ -16,6 +16,7 @@ public class HomeController {
 //                "\nNumer wersji: " + appVersion;
     }
 
+
     public static int returnNumber(int a) {
         return a;
     }
