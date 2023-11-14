@@ -7,13 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
-    @Value("${app.version}")
-    private String appVersion;
-
     @GetMapping("/")
     public String home() {
-        return "Witaj w aplikacji na Azure \n" +
-                "\nNumer wersji: " + appVersion;
+        String buildNumber = System.getProperty("build.number", "0.0.1");
+        return "Witaj w aplikacji na Azure (test)\n" +
+                "\nNumer wersji: " + buildNumber;
     }
 
 
