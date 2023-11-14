@@ -30,7 +30,9 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven and run tests
-        run: mvn clean install
+        run: |
+          mvn clean install
+          sed -i "s/@project.version@/0.0.${{ github.run_number }}/g" src/main/resources/application.properties
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
