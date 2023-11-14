@@ -56,7 +56,7 @@ jobs:
           app-name: 'mwo3-dev'
           slot-name: 'Production'
           package: '*.jar'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_28511560D5E44FEEA5FA7D40F78E3FC1 }}
+          publish-profile: ${{ secrets.AZURE_PUBLISH_DEVELOPMENT }}
 
   deploy-production:
     runs-on: ubuntu-latest
