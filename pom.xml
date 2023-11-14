@@ -41,18 +41,28 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>versions-maven-plugin</artifactId>
-				<version>2.7</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.2.0</version>
 				<executions>
 					<execution>
+						<id>copy-application-properties</id>
 						<phase>generate-resources</phase>
 						<goals>
-							<goal>set</goal>
+							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<generateBackupPoms>false</generateBackupPoms>
-							<newVersion>${buildNumber}</newVersion>
+							<outputDirectory>${project.build.outputDirectory}/config</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/resources</directory>
+									<filtering>true</filtering>
+									<includes>
+										<include>application.properties</include>
+									</includes>
+								</resource>
+							</resources>
+							<overwrite>true</overwrite>
 						</configuration>
 					</execution>
 				</executions>
@@ -60,21 +70,55 @@
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>3.2.0</version>
+				<artifactId>properties-maven-plugin</artifactId>
+				<version>1.0.0</version>
 				<executions>
 					<execution>
-						<id>timestamp-property</id>
+						<phase>generate-resources</phase>
 						<goals>
-							<goal>timestamp-property</goal>
+							<goal>write-project-properties</goal>
 						</goals>
 						<configuration>
-							<name>build.timestamp</name>
-							<pattern>yyyyMMdd-HHmmss</pattern>
+							<outputFile>${project.build.outputDirectory}/config/application.properties</outputFile>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>org.codehaus.mojo</groupId>-->
+<!--				<artifactId>versions-maven-plugin</artifactId>-->
+<!--				<version>2.7</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<phase>generate-resources</phase>-->
+<!--						<goals>-->
+<!--							<goal>set</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<generateBackupPoms>false</generateBackupPoms>-->
+<!--							<newVersion>${buildNumber}</newVersion>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
+
+<!--			<plugin>-->
+<!--				<groupId>org.codehaus.mojo</groupId>-->
+<!--				<artifactId>build-helper-maven-plugin</artifactId>-->
+<!--				<version>3.2.0</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<id>timestamp-property</id>-->
+<!--						<goals>-->
+<!--							<goal>timestamp-property</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<name>build.timestamp</name>-->
+<!--							<pattern>yyyyMMdd-HHmmss</pattern>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
 
 		</plugins>
 	</build>
