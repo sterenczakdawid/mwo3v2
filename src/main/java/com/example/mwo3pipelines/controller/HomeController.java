@@ -10,7 +10,7 @@ public class HomeController {
     @GetMapping("/")
     public String home() {
         String buildNumber = System.getProperty("build.number", "0.0.1");
-        return "Witaj w aplikacji na Azureeee\n" +
+        return "Witaj w aplikacji na Azureeee123\n" +
                 "\nNumer wersji: " + buildNumber;
     }
 

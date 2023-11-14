@@ -21,7 +21,7 @@ jobs:
         id: set_build_number
         uses: einaregilsson/build-number@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 #      - name: Debug
 #        run: echo "build.number=0.0.${{ github.run_number }}" >> $GITHUB_ENV
 
