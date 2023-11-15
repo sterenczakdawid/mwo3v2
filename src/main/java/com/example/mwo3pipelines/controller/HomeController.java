@@ -9,7 +9,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return "Witaj w aplikacji na Azure!";
+        return "Witaj w aplikacji na Azure, wersja 0.0.1";
     }
 
 
